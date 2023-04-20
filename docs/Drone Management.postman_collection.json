@@ -1,0 +1,238 @@
+{
+	"info": {
+		"_postman_id": "065fc513-0f3f-4594-861a-b1d7aedc234f",
+		"name": "Drone Management",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Register drone",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data=pm.response.json();\r",
+							"pm.collectionVariables.set(\"droneId\", data.id);"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"const models = [\"Lightweight\", \"Middleweight\", \"Cruiserweight\", \"Heavyweight\"];\r",
+							"pm.collectionVariables.set(\"droneModel\", Math.floor(Math.random() * models.length));"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"serialNumber\": \"{{$randomAbbreviation}}-{{$randomAbbreviation}}-{{$randomAbbreviation}}\",\r\n    \"model\": \"{{droneModel}}\",\r\n    \"weightLimit\": 500,\r\n    \"batteryCapacity\": 100\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8888/droneManagement/drone/register",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"droneManagement",
+						"drone",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Load drone",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\r\n    {\r\n        \"medicationId\": \"c528e3d1-d627-414a-bc46-1d8371200b0d\",\r\n        \"quantity\": 2\r\n    }\r\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8888/droneManagement/drone/{{droneId}}/load",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"droneManagement",
+						"drone",
+						"{{droneId}}",
+						"load"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get loaded medications",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8888/droneManagement/drone/{{droneId}}/medications",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"droneManagement",
+						"drone",
+						"{{droneId}}",
+						"medications"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Check battery level",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8888/droneManagement/drone/{{droneId}}/checkBatteryLevel",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"droneManagement",
+						"drone",
+						"{{droneId}}",
+						"checkBatteryLevel"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get all available drones",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8888/droneManagement/drone/available",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"droneManagement",
+						"drone",
+						"available"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get battery level changes log",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8888/droneManagement/drone/log/batteryLevel",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"droneManagement",
+						"drone",
+						"log",
+						"batteryLevel"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create medication",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Ibuprofen\",\r\n    \"weight\": 55,\r\n    \"code\": \"A12345\",\r\n    \"image\": \"https://placeimg.com/640/480/tech\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8888/droneManagement/medication",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"droneManagement",
+						"medication"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get all medications",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8888/droneManagement/medication",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"droneManagement",
+						"medication"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "droneId",
+			"value": ""
+		},
+		{
+			"key": "droneModel",
+			"value": ""
+		}
+	]
+}
