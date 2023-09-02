@@ -1,10 +1,10 @@
 quarkus:
   datasource:
     db-kind: postgresql
-    username: postgres
-    password: password
+    username: ${PG_USER}
+    password: ${PG_PASSWORD}
     jdbc:
-      url: jdbc:postgresql://localhost:5432/postgres?currentSchema=drone_management
+      url: jdbc:postgresql://${PG_HOST}:${PG_PORT}/postgres?currentSchema=drone_management
   hibernate-orm:
     database:
       generation: none
@@ -15,8 +15,6 @@ quarkus:
     baseline-on-migrate: true
     clean-at-start: true
     out-of-order: true
-  http:
-    port: 8888
 
 drone-management:
   job:

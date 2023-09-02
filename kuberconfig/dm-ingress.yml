@@ -1,0 +1,17 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  namespace: project-base-cloud-devops-6
+  name: test11
+spec:
+  rules:
+  - host: k8s-mgmt.dfcloud.ru
+    http:
+      paths:
+        - path: /
+          backend:
+            service:
+              name: drone-management
+              port:
+                number: 8000
+          pathType: ImplementationSpecific

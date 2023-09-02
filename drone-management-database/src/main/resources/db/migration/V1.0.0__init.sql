@@ -1,3 +1,5 @@
+CREATE EXTENSION IF NOT EXISTS "uuid-ossp" SCHEMA public;
+
 CREATE TABLE drone
 (
     id               uuid DEFAULT public.uuid_generate_v4(),
