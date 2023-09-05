@@ -4,6 +4,8 @@ kind: Service
 metadata:
   # Name your service
   name: postgresdb
+  annotations:
+    kubesphere.io/creator: Ilia Avdeev
   labels:
     app: postgresdb
 spec:

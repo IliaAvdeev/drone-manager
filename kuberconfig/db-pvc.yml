@@ -4,6 +4,8 @@ kind: PersistentVolumeClaim
 metadata:
   # Name the volume chain
   name: db-pvc
+  annotations:
+    kubesphere.io/creator: Ilia Avdeev
 spec:
   storageClassName: ssd-01
   accessModes:

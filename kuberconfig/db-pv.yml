@@ -4,6 +4,8 @@ kind: PersistentVolume
 metadata:
   # Name the persistent chain
   name: postgresdb-persistent-volume
+  annotations:
+    kubesphere.io/creator: Ilia Avdeev
   # Labels for identifying PV
   labels:
     type: local
